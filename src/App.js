@@ -1,5 +1,6 @@
 import express from "express";
 import Express from "./loaders/app/Express.js";
+import logger from "./loaders/app/Wiston.js";
 
 const App = async () => {
   const PORT = 3000; // @env
@@ -7,7 +8,7 @@ const App = async () => {
 
   Express(app);
 
-  app.listen(PORT, () => console.log(`start server ${PORT}`));
+  app.listen(PORT, () => logger.info("asd"));
 };
 
 App();
