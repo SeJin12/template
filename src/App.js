@@ -8,7 +8,7 @@ const App = async () => {
 
   Express(app);
 
-  app.listen(PORT, () => logger.info("asd"));
+  app.listen(PORT, () => logger.info(`Running Server:${PORT}`));
 };
 
 App();
