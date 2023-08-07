@@ -1,4 +1,3 @@
-import { format } from "mysql2";
 import winston from "winston";
 import winstonDaily from "winston-daily-rotate-file";
 
@@ -20,6 +19,14 @@ const logger = winston.createLogger({
       level: "info",
       datePattern: "YYYY-MM-DD",
       dirname: logDir,
+      filename: `%DATE%.log`,
+      maxFiles: 30,
+      zippedArchive: true,
+    }),
+    new winstonDaily({
+      level: "http",
+      datePattern: "YYYY-MM-DD",
+      dirname: logDir + "/http",
       filename: `%DATE%.log`,
       maxFiles: 30,
       zippedArchive: true,
@@ -48,10 +55,7 @@ const logger = winston.createLogger({
 if (process.env.NODE_ENV !== "production") {
   logger.add(
     new winston.transports.Console({
-      format: winston.format.combine(
-        winston.format.colorize(),
-        logFormat
-      ),
+      format: winston.format.combine(winston.format.colorize(), logFormat),
     })
   );
 }

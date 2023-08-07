@@ -6,6 +6,12 @@ const App = async () => {
   const PORT = 3000; // @env
   const app = express();
 
+  // Error Test
+  app.get('/error', (req, res) => {
+    logger.error('Error Message');
+    res.sendStatus(500);
+  })
+
   Express(app);
 
   app.listen(PORT, () => logger.info(`Running Server:${PORT}`));
