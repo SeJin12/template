@@ -13,13 +13,7 @@ const Express = (app) => {
   app.use(express.json({ limit: "16mb" }));
 
   app.use(morganMiddleware);
-
-  app.head("/status", (req, res) => {
-    res.status(200).end();
-  });
-
   Router(app);
-
   app.use(ErrorHandler);
 
   return app;
