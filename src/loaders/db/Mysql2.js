@@ -1,7 +1,7 @@
 import config from '../../config/index.js';
 import mysql2 from "mysql2/promise";
 
-const pool = mysql2.createPool(config);
+const pool = mysql2.createPool(config.mysql);
 
 export default async (query) => {
     try {
