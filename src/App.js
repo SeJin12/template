@@ -2,19 +2,17 @@ import express from "express";
 import Express from "./loaders/app/Express.js";
 import logger from "./loaders/app/Wiston.js";
 
-const App = async () => {
-  const PORT = 3000; // @env
-  const app = express();
+const App = () => {
+  try {
+    const PORT = 3000; // @env
+    const app = express();
 
-  // Error Test
-  app.get('/error', (req, res) => {
-    logger.error('Error Message');
-    res.sendStatus(500);
-  })
+    Express(app);
 
-  Express(app);
-
-  app.listen(PORT, () => logger.info(`Running Server:${PORT}`));
+    app.listen(PORT, () => logger.info(`Running Server:${PORT}`));
+  } catch (err) {
+    logger.error(err);
+  }
 };
 
 App();
